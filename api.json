@@ -1,0 +1,64 @@
+{
+  "default": {
+    "GET": { "/health-check": { "codes": ["200"], "auth": false } }
+  },
+  "Auth": {
+    "POST": {
+      "/api/auth/registration": { "codes": ["204", "400"], "auth": false },
+      "/api/auth/registration-confirmation": {
+        "codes": ["204", "400"],
+        "auth": false
+      },
+      "/api/auth/registration-email-resending": {
+        "codes": ["204", "400", "404"],
+        "auth": false
+      },
+      "/api/auth/login": { "codes": ["200", "400", "401"], "auth": false },
+      "/api/auth/logout": { "codes": ["204", "401"], "auth": true },
+      "/api/auth/refresh-token": { "codes": ["200", "401"], "auth": true },
+      "/api/auth/password-recovery": { "codes": ["204", "400"], "auth": false },
+      "/api/auth/new-password": { "codes": ["204", "400"], "auth": false }
+    }
+  },
+  "Users": {
+    "POST": {
+      "/api/users/self/images/avatar": {
+        "codes": ["201", "400", "404", "500"],
+        "auth": true
+      },
+      "/api/users/self/profile": {
+        "codes": ["204", "400", "401", "403", "404"],
+        "auth": true
+      }
+    },
+    "GET": {
+      "/api/users/self/profile": {
+        "codes": ["200", "401", "403"],
+        "auth": true
+      }
+    },
+    "PUT": {
+      "/api/users/self/profile": {
+        "codes": ["204", "400", "401", "403", "404"],
+        "auth": true
+      }
+    }
+  },
+  "DeviceSessions": {
+    "GET": {
+      "/api/sessions/devices": { "codes": ["200", "401"], "auth": true }
+    },
+    "DELETE": {
+      "/api/sessions/devices": { "codes": ["204", "401"], "auth": true },
+      "/api/sessions/devices/{deviceId}": {
+        "codes": ["204", "401", "403", "404"],
+        "auth": true
+      }
+    }
+  },
+  "Testing": {
+    "DELETE": {
+      "/api/testing/remove-all-data": { "codes": ["204"], "auth": false }
+    }
+  }
+}
